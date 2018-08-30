@@ -1,4 +1,4 @@
-package com.barkas.shop;
+package com.wlu.barkas;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ShopApplicationTests {
+public class BarkasApplicationTests {
 
 	@Test
 	public void contextLoads() {
