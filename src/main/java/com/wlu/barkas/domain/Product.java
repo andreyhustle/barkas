@@ -1,6 +1,9 @@
 package com.wlu.barkas.domain;
 
+import com.wlu.barkas.domain.attributes.Manufacturer;
+
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 
 @MappedSuperclass
 public abstract class Product {
@@ -9,8 +12,10 @@ public abstract class Product {
     protected int quantity;
     protected long price;
     protected String model;
-    protected String vendorCode;
-    protected String producer;
+    protected String code;
+    @OneToOne(targetEntity = Manufacturer.class)
+    protected Manufacturer manufacturer;
+    protected String description;
 
     public String getName() {
         return name;
@@ -44,20 +49,25 @@ public abstract class Product {
         this.model = model;
     }
 
-    public String getVendorCode() {
-        return vendorCode;
+    public Product(String name, int quantity, long price, String model, String code, Manufacturer manufacturer, String description) {
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+        this.model = model;
+        this.code = code;
+        this.manufacturer = manufacturer;
+        this.description = description;
     }
 
-    public void setVendorCode(String vendorCode) {
-        this.vendorCode = vendorCode;
+    public Product() {
     }
 
-    public String getProducer() {
-        return producer;
+    public String getCode() {
+        return code;
     }
 
-    public void setProducer(String producer) {
-        this.producer = producer;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @Override
@@ -67,8 +77,9 @@ public abstract class Product {
                 ", quantity=" + quantity +
                 ", price=" + price +
                 ", model='" + model + '\'' +
-                ", vendorCode='" + vendorCode + '\'' +
-                ", producer='" + producer + '\'' +
+                ", code='" + code + '\'' +
+                ", manufacturer=" + manufacturer +
+                ", description='" + description + '\'' +
                 '}';
     }
 }
